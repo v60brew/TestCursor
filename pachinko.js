@@ -169,18 +169,21 @@ function resetGame() {
     playAgainButton.style.display = 'none';
 }
 
-// Initialize pegs in a rectangular pattern
+// Initialize pegs in a triangular pattern
 function initializePegs() {
     const rows = 8;
-    const cols = 12;
     const pegSpacing = 60;
-    const startX = canvas.width / 2 - (cols * pegSpacing) / 2;
+    const startX = canvas.width / 2;
     const startY = 100;
 
     for (let row = 0; row < rows; row++) {
-        for (let col = 0; col < cols; col++) {
+        const pegsInRow = row + 5;
+        const rowWidth = (pegsInRow - 1) * pegSpacing;
+        const rowStartX = startX - rowWidth / 2;
+
+        for (let i = 0; i < pegsInRow; i++) {
             pegs.push({
-                x: startX + col * pegSpacing,
+                x: rowStartX + i * pegSpacing,
                 y: startY + row * pegSpacing
             });
         }
